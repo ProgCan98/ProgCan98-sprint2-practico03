@@ -12,7 +12,11 @@ class SuperHeroRepository extends IRepository {
     return await SuperHero.find({ [atributo]: valor });
   }
   async obtenerMayoresDe30() {
-    return await SuperHero.find({ edad: { $gt: 30 } }); //$gt: "greater than" (mayor que)
+    return await SuperHero.find({
+      edad: { $gt: 30 }, // Buscar superhéroes con edad mayor a 30
+      planetaOrigen: 'Tierra', // Filtrar por planeta Tierra
+      $expr: { $gte: [{ $size: '$poderes' }, 2] }, // Filtrar superhéroes con al menos 2 poderes
+    }); //$gt: "greater than" (mayor que)
   }
 }
 
