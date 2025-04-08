@@ -5,6 +5,7 @@ import {
   obtenerTodosLosSuperheroes,
   buscarSuperheroesPorAtributo,
   obtenerSuperheroesMayoresDe30,
+  crearSuperheroe,
 } from '../services/superheroesService.mjs';
 
 import {
@@ -78,6 +79,15 @@ export async function obtenerSuperheroesMayoresDe30Controller(req, res) {
       mensaje: 'Error al obtener superheroes mayores de 30',
       error: error.message,
     });
+  }
+}
+
+export async function crearSuperheroeController(req, res) {
+  try {
+    const nuevoSuperheroe = await crearSuperheroe(req.body);
+    res.status(201).json(renderizarSuperheroe(nuevoSuperheroe));
+  } catch (error) {
+    res.status(400).json({ mensaje: 'Error al crear el superhéroe', error });
   }
 }
 

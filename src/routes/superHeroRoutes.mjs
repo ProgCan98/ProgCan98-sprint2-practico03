@@ -6,6 +6,7 @@ import {
   obtenerTodosLosSuperheroesController,
   buscarSuperheroesPorAtributoController,
   obtenerSuperheroesMayoresDe30Controller,
+  crearSuperheroeController,
 } from '../controllers/superheroesController.mjs';
 
 const router = express.Router();
@@ -17,6 +18,7 @@ router.get(
   '/heroes/buscar/:atributo/:valor',
   buscarSuperheroesPorAtributoController
 );
+router.post('/heroes', crearSuperheroeController);
 
 export default router;
 // La capa de rutas define los endpoints y mapea cada uno a su respectivo controlador permitiendo que las solicitudes HTTP se manejen de forma estructurada y predecible.

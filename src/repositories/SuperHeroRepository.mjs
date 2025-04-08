@@ -18,6 +18,10 @@ class SuperHeroRepository extends IRepository {
       $expr: { $gte: [{ $size: '$poderes' }, 2] }, // Filtrar superhéroes con al menos 2 poderes
     }); //$gt: "greater than" (mayor que)
   }
+  async crearSuperheroe(data) {
+    const nuevo = new SuperHero(data);
+    return await nuevo.save();
+  }
 }
 
 export default new SuperHeroRepository();
