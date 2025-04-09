@@ -19,6 +19,12 @@ class IRepository {
   actualizarPorId() {
     throw new Error("Método 'actualizarPorId()' no implementado");
   }
+  eliminarPorId() {
+    throw new Error("Método 'eliminarPorId()' no implementado");
+  }
+  eliminarPorNombre() {
+    throw new Error("Método 'eliminarPorId()' no implementado");
+  }
 }
 
 export default IRepository;

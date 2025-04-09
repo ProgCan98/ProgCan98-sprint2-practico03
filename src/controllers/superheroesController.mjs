@@ -7,6 +7,8 @@ import {
   obtenerSuperheroesMayoresDe30,
   crearSuperheroe,
   actualizarSuperheroe,
+  eliminarSuperheroe,
+  eliminarSuperheroePorNombre,
 } from '../services/superheroesService.mjs';
 
 import {
@@ -108,5 +110,42 @@ export async function actualizarSuperheroeController(req, res) {
     res.status(500).json({ mensaje: 'Error al actualizar el superhéroe', error: error.message });
   }
 }
+
+export async function eliminarSuperheroeController(req, res) {
+  try {
+    const { id } = req.params;
+    const superheroeEliminado = await eliminarSuperheroe(id);
+
+    if (!superheroeEliminado) {
+      return res.status(404).json({ mensaje: 'Superhéroe no encontrado' });
+    }
+
+    res.status(200).json(renderizarSuperheroe(superheroeEliminado));
+  } catch (error) {
+    res.status(500).json({
+      mensaje: 'Error al eliminar el superhéroe',
+      error: error.message
+    });
+  }
+}
+
+export async function eliminarSuperheroePorNombreController(req, res) {
+  try {
+    const { nombre } = req.params;
+    const eliminado = await eliminarSuperheroePorNombre(nombre);
+
+    if (!eliminado) {
+      return res.status(404).json({ mensaje: 'Superhéroe no encontrado' });
+    }
+
+    res.status(200).json(renderizarSuperheroe(eliminado));
+  } catch (error) {
+    res.status(500).json({
+      mensaje: 'Error al eliminar el superhéroe por nombre',
+      error: error.message
+    });
+  }
+}
+
 
 // La capa de controladores gestiona las solicitudes del cliente y llama a la capa de servicios para realizar las operaciones necesarias. Al usar funciones específicas para cada endpoint, el controlador actúa como intermediario, facilitando la separación de responsabilidades y mejorando la organización del código.
