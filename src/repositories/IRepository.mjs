@@ -16,6 +16,9 @@ class IRepository {
   crearSuperheroe() {
     throw new Error("Método 'crearSuperheroe()' no implementado");
   }
+  actualizarPorId() {
+    throw new Error("Método 'actualizarPorId()' no implementado");
+  }
 }
 
 export default IRepository;

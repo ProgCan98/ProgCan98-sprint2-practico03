@@ -22,6 +22,9 @@ class SuperHeroRepository extends IRepository {
     const nuevo = new SuperHero(data);
     return await nuevo.save();
   }
+  async actualizarPorId(id, datosActualizados) {
+    return await SuperHero.findByIdAndUpdate(id, datosActualizados, { new: true });
+  }
 }
 
 export default new SuperHeroRepository();

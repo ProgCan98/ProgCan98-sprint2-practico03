@@ -6,6 +6,7 @@ import {
   buscarSuperheroesPorAtributo,
   obtenerSuperheroesMayoresDe30,
   crearSuperheroe,
+  actualizarSuperheroe,
 } from '../services/superheroesService.mjs';
 
 import {
@@ -88,6 +89,23 @@ export async function crearSuperheroeController(req, res) {
     res.status(201).json(renderizarSuperheroe(nuevoSuperheroe));
   } catch (error) {
     res.status(400).json({ mensaje: 'Error al crear el superhéroe', error });
+  }
+}
+
+export async function actualizarSuperheroeController(req, res) {
+  try {
+    const { id } = req.params;
+    const datos = req.body;
+
+    const actualizado = await actualizarSuperheroe(id, datos);
+
+    if (!actualizado) {
+      return res.status(404).json({ mensaje: 'Superhéroe no encontrado' });
+    }
+
+    res.status(200).json(renderizarSuperheroe(actualizado));
+  } catch (error) {
+    res.status(500).json({ mensaje: 'Error al actualizar el superhéroe', error: error.message });
   }
 }
 

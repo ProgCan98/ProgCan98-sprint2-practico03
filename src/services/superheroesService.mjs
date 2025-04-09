@@ -22,4 +22,8 @@ export async function crearSuperheroe(data) {
   return await superHeroRepository.crearSuperheroe(data);
 }
 
+export async function actualizarSuperheroe(id, datosActualizados) {
+  return await superHeroRepository.actualizarPorId(id, datosActualizados);
+}
+
 // La capa de servicios contiene la lógica de negocio y se encarga de validar y transformar los datos cuando es necesario. Esto permite mantener el repositorio enfocado únicamente en el acceso a la base de datos, facilitando la separación de responsabilidades y asegurando que la lógica de negocio se encuentre en un solo lugar.
